@@ -33,7 +33,7 @@ def main():
 
     encontrado, objetos_sacados = usar_la_fuerza(mochila)
 
-    print(f"\n👉 Objetos sacados: {objetos_sacados}")
+    print(f"\n Objetos sacados: {objetos_sacados}")
     if encontrado:
         print("Misión cumplida: sable de luz en mano.")
     else:
