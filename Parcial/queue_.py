@@ -1,6 +1,6 @@
 from typing import Any, Optional
 
-class Queue_:
+class Queue:
 
     def __init__(self):
         self.__elements = []

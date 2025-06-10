@@ -1,6 +1,6 @@
 from random import randint
 
-from stack import Stack  # Adjust the import path based on the actual location of stack.py
+from Stack import Stack
 
 # number_stack = Stack()
 # even_stack = Stack() # par
