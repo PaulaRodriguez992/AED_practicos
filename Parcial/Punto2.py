@@ -118,6 +118,8 @@ def eliminar_electro_y_zemo(lista):
 
 eliminar_electro_y_zemo(heroes_list)
 
+
+
  
 
 
