@@ -209,7 +209,7 @@ class BinaryTree:
         if self.root is not None:
             __villain_in_order(self.root)
             
-    def in_order_starts_with_c(self): #agregado
+    def in_order_starts_with_c(self): #agregado para ej5 c
         """Muestra los superhéroes que empiezan con C."""
         def __in_order_starts_with_c(root):
             if root is not None:
@@ -222,7 +222,7 @@ class BinaryTree:
         if self.root is not None:
             __in_order_starts_with_c(self.root)
 
-    def in_order_desc(self): #agregado
+    def in_order_desc(self): #agregado para ej5 f
         """Lista los superhéroes en orden descendente."""
         def __in_order_desc(root):
             if root is not None:
@@ -236,7 +236,7 @@ class BinaryTree:
         if self.root is not None:
             __in_order_desc(self.root)
 
-    def count_nodes(self): #agregado
+    def count_nodes(self): #agregado para ej5 g.
         """Cuenta el número total de nodos en el árbol."""
         def __count_nodes(root):
             if root is None:
@@ -263,6 +263,72 @@ class BinaryTree:
             total = __count_heroes(self.root)
         
         return total
+    
+    # MÉTODOS NUEVOS para ej23
+    def in_order_defeats(self): #punto a
+        """Realiza un barrido in-order mostrando la criatura y por quién fue derrotada."""
+        def __in_order_defeats(root):
+            if root is not None:
+                __in_order_defeats(root.left)
+                defeated_by = root.other_values.get("derrotado_por") or "Nadie"
+                print(f"- {root.value} (Derrotado por: {defeated_by})")
+                __in_order_defeats(root.right)
+        
+        if self.root is not None:
+            __in_order_defeats(self.root)
+
+    def in_order_defeated_by(self, hero_name): #punto e
+        """Lista las criaturas derrotadas por un héroe o dios específico."""
+        def __in_order_defeated_by(root, hero_name):
+            if root is not None:
+                __in_order_defeated_by(root.left, hero_name)
+                if root.other_values.get("derrotado_por") == hero_name:
+                    print(f"- {root.value}")
+                __in_order_defeated_by(root.right, hero_name)
+        
+        if self.root is not None:
+            __in_order_defeated_by(self.root, hero_name)
+
+    def in_order_not_defeated(self): #punto 
+        """Lista las criaturas que no han sido derrotadas."""
+        def __in_order_not_defeated(root):
+            if root is not None:
+                __in_order_not_defeated(root.left)
+                # Usamos .get() para evitar errores si la clave no existiera
+                if not root.other_values.get("derrotado_por"):
+                    print(f"- {root.value}")
+                __in_order_not_defeated(root.right)
+
+        if self.root is not None:
+            __in_order_not_defeated(self.root)
+
+    def generate_ranking_defeats(self):
+        """Genera un ranking de los héroes que más criaturas derrotaron."""
+        ranking = {}
+        def __generate_ranking(root, ranking):
+            if root is not None:
+                __generate_ranking(root.left, ranking)
+                hero = root.other_values.get("derrotado_por")
+                if hero: # Si el valor no es None o una cadena vacía
+                    ranking[hero] = ranking.get(hero, 0) + 1
+                __generate_ranking(root.right, ranking)
+        
+        __generate_ranking(self.root, ranking)
+        return ranking
+
+    def in_order_captured_by(self, hero_name):
+        """Muestra las criaturas capturadas por un héroe o dios específico."""
+        def __in_order_captured_by(root, hero_name):
+            if root is not None:
+                __in_order_captured_by(root.left, hero_name)
+                if root.other_values.get("capturada") == hero_name:
+                    print(f"- {root.value}")
+                __in_order_captured_by(root.right, hero_name)
+        
+        if self.root is not None:
+            __in_order_captured_by(self.root, hero_name)  
+            
+            # MÉTODOS PARA EJ23
     
     def divide_tree(self, arbol_h, arbol_v):
         def __divide_tree(root, arbol_h, arbol_v):
@@ -412,6 +478,3 @@ arbol_villanos = BinaryTree()
 # if pos is not None:
 #     print(pos.value, pos.other_values)
 
-
-
-    
