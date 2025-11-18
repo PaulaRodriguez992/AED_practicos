@@ -1,9 +1,8 @@
-from Queue_ import Queue
+from queue_ import Queue_
 from random import randint
 
 
-queue_letters = Queue()
-
+queue_letters = Queue_()
 for i in range(15):
     queue_letters.arrive(chr(randint(65, 90)))
 

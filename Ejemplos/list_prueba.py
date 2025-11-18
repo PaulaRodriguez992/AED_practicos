@@ -60,7 +60,7 @@ class Superhero:
         self.short_bio = short_bio
         self.first_appearance = first_appearance
         self.is_villain = is_villain
-        self.movies = List()
+        self.movies = List_()
         self.movies.add_criterion('name', order_by_name)
         self.movies.add_criterion('year', order_by_year)
 
@@ -79,7 +79,7 @@ class Movie:
 
 
 
-list_superhero = List()
+list_superhero = List_()
 list_superhero.add_criterion('name', order_by_name)
 
 # list_movie = List()

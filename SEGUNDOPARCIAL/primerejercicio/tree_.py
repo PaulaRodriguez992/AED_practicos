@@ -1,5 +1,6 @@
+
 from typing import Any, Optional
-from queue_ import Queue
+from queue_ import Queue_
 
 class BinaryTree:
 
@@ -42,6 +43,7 @@ class BinaryTree:
             __pre_order(self.root)
 
     def in_order(self):
+        
         def __in_order(root):
             if root is not None:
                 __in_order(root.left)
@@ -50,16 +52,6 @@ class BinaryTree:
 
         if self.root is not None:
             __in_order(self.root)
-
-    def post_order(self):
-        def __post_order(root):
-            if root is not None:
-                __post_order(root.right)
-                print(root.value)
-                __post_order(root.left)
-
-        if self.root is not None:
-            __post_order(self.root)
 
     def search(self, value: Any) -> __nodeTree:
         def __search(root, value):
@@ -77,20 +69,21 @@ class BinaryTree:
         return aux
 
     def proximity_search(self, value: Any) -> __nodeTree:
+       
         def __search(root, value):
             if root is not None:
-                if root.value.startswith(value):
-                    print(root.value)
-                # elif root.value > value:
+                
+                if value.lower() in root.value.lower():
+                    print(f"  -> Coincidencia: {root.other_values}")
+               
                 __search(root.left, value)
-                # else:
                 __search(root.right, value)
 
         aux = None
         if self.root is not None:
             aux = __search(self.root, value)
         return aux
-
+    
     def delete(self, value: Any):
         def __replace(root):
             if root.right is None:
@@ -130,14 +123,19 @@ class BinaryTree:
         
         return delete_value, deleter_other_values
     
-    def by_level(self):
-        tree_queue = Queue()
+    def by_level(self, function=None):
+        tree_queue = Queue_()
         if self.root is not None:
             tree_queue.arrive(self.root)
 
             while tree_queue.size() > 0:
                 node = tree_queue.attention()
-                print(node.value)
+                
+                if function:
+                    function(node.value, node.other_values)
+                else:
+                    print(node.value)
+             
                 if node.left is not None:
                     tree_queue.arrive(node.left)
                 if node.right is not None:
@@ -198,33 +196,33 @@ class BinaryTree:
                     root = self.double_rotation(root, False)
         return root
 
-    def villain_in_order(self):
-        def __villain_in_order(root):
-            if root is not None:
-                __villain_in_order(root.left)
-                if root.other_values["is_villain"] is True:
-                    print(root.value)
-                __villain_in_order(root.right)
+    # def villain_in_order(self):
+    #     def __villain_in_order(root):
+    #         if root is not None:
+    #             __villain_in_order(root.left)
+    #             if root.other_values["is_villain"] is True:
+    #                 print(root.value)
+    #             __villain_in_order(root.right)
 
-        if self.root is not None:
-            __villain_in_order(self.root)
+    #     if self.root is not None:
+    #         __villain_in_order(self.root)
 
-    def count_heroes(self):
-        def __count_heroes(root):
-            count = 0
-            if root is not None:
-                if root.other_values["is_villain"] is False:
-                    count += 1
-                count += __count_heroes(root.left)
-                count += __count_heroes(root.right)
+    # def count_heroes(self):
+    #     def __count_heroes(root):
+    #         count = 0
+    #         if root is not None:
+    #             if root.other_values["is_villain"] is False:
+    #                 count += 1
+    #             count += __count_heroes(root.left)
+    #             count += __count_heroes(root.right)
 
-            return count
+    #         return count
 
-        total = 0
-        if self.root is not None:
-            total = __count_heroes(self.root)
+    #     total = 0
+    #     if self.root is not None:
+    #         total = __count_heroes(self.root)
         
-        return total
+    #     return total
     
     def divide_tree(self, arbol_h, arbol_v):
         def __divide_tree(root, arbol_h, arbol_v):
@@ -275,11 +273,77 @@ class BinaryTree:
 
         if self.root is not None:
             __ranking(self.root, ranking_result)
+    
+    
+    # MÉTODOS AÑADIDOS PARA EL EXAMEN DE POKÉMON
+
+    def in_order_pokemon_by_tipo(self, tipos_a_buscar):
+        
+        def __in_order(root):
+            if root is not None:
+                __in_order(root.left)
+               
+                if root.value in tipos_a_buscar:
+                    print(f"  -> Tipo {root.value}: {root.other_values['nombre']}")
+                __in_order(root.right)
+        
+        __in_order(self.root) # Llama al ayudante recursivo
+
+    def in_order_weakness(self, tipo_debilidad):
+        
+        def __in_order(root):
+            if root is not None:
+                __in_order(root.left)
+                if tipo_debilidad in root.other_values['debilidad']:
+                    print(f"  -> {root.value} es débil a {tipo_debilidad}")
+                __in_order(root.right)
+
+        __in_order(self.root) # Llama al ayudante recursivo
+
+    def count_types(self, tipos_dict):
+        
+        def __count(root):
+            if root is not None:
+                # Procesa este nodo
+                for tipo in root.other_values['tipo']:
+                    tipos_dict[tipo] = tipos_dict.get(tipo, 0) + 1
+                # Sigue con los hijos
+                __count(root.left)
+                __count(root.right)
+        
+        __count(self.root) # Llama al ayudante recursivo
+
+    def count_megas(self):
+        
+        def __count(root):
+            count = 0
+            if root is not None:
+                if root.other_values['mega']:
+                    count = 1  # Suma 1 si este nodo lo tiene
+                # Suma lo que cuenten sus hijos
+                count += __count(root.left)
+                count += __count(root.right)
+            return count
+        
+        return __count(self.root) # Llama al ayudante recursivo
+
+    def count_gigamax(self):
+        
+        def __count(root):
+            count = 0
+            if root is not None:
+                if root.other_values['gigamax']:
+                    count = 1  # Suma 1 si este nodo lo tiene
+                # Suma lo que cuenten sus hijos
+                count += __count(root.left)
+                count += __count(root.right)
+            return count
+
+        return __count(self.root) # Llama al ayudante recursivo
 
 arbol = BinaryTree()
 arbol_heroes = BinaryTree()
 arbol_villanos = BinaryTree()
-
 
 
 
