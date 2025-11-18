@@ -60,7 +60,6 @@ for nombre, en_nueve_episodios in personajes_data:
     print(f"Insertado: {nombre}")
 
 print("\n--- Cargando Conexiones (Aristas) ---")
-# ¡Estos datos están basados en el canon de las películas I-IX!
 # El peso es la cantidad de películas en las que AMBOS personajes aparecen.
 aristas_data = [
     # Pares de Luke
