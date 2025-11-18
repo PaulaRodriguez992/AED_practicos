@@ -40,7 +40,7 @@ print("\n" + "="*40 + "\n")
 
 
 #Mostrar datos por número y nombre (Búsquedas)
-print("--- Búsqueda por Número (Exacta) ---")
+print(" Búsqueda por Número (Exacta)")
 numero_buscado = 25
 print(f"Buscando Pokémon número {numero_buscado}...")
 node = tree_numero.search(numero_buscado) # Usa el .search() genérico
@@ -52,7 +52,7 @@ else:
 print("\nBúsqueda por Nombre (Proximidad)")
 nombre_buscado = "Char"
 print(f"Buscando Pokémon que contengan '{nombre_buscado}'...")
-# ¡Usa el método proximity_search modificado!
+# Usa el método proximity_search modificado!
 tree_nombre.proximity_search(nombre_buscado)
 
 os.system('pause')
@@ -62,7 +62,7 @@ print("\n" + "="*40 + "\n")
 # Mostrar Pokémon por tipo
 print("Listado por Tipo")
 tipos_a_buscar = ["Fantasma", "Fuego", "Acero", "Eléctrico"]
-# ¡Usa el NUEVO método!
+
 tree_tipo.in_order_pokemon_by_tipo(tipos_a_buscar)
 
 os.system('pause')

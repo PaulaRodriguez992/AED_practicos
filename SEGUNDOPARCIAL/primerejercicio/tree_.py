@@ -196,84 +196,7 @@ class BinaryTree:
                     root = self.double_rotation(root, False)
         return root
 
-    # def villain_in_order(self):
-    #     def __villain_in_order(root):
-    #         if root is not None:
-    #             __villain_in_order(root.left)
-    #             if root.other_values["is_villain"] is True:
-    #                 print(root.value)
-    #             __villain_in_order(root.right)
-
-    #     if self.root is not None:
-    #         __villain_in_order(self.root)
-
-    # def count_heroes(self):
-    #     def __count_heroes(root):
-    #         count = 0
-    #         if root is not None:
-    #             if root.other_values["is_villain"] is False:
-    #                 count += 1
-    #             count += __count_heroes(root.left)
-    #             count += __count_heroes(root.right)
-
-    #         return count
-
-    #     total = 0
-    #     if self.root is not None:
-    #         total = __count_heroes(self.root)
-        
-    #     return total
-    
-    def divide_tree(self, arbol_h, arbol_v):
-        def __divide_tree(root, arbol_h, arbol_v):
-            if root is not None:
-                if root.other_values["is_villain"] is False:
-                    arbol_h.insert(root.value, root.other_values)
-                else:
-                    arbol_v.insert(root.value, root.other_values)
-                __divide_tree(root.left, arbol_h, arbol_v)
-                __divide_tree(root.right, arbol_h, arbol_v)
-
-
-        __divide_tree(self.root, arbol_h, arbol_v)
-    
-    def in_order_height(self):
-        def __in_order_height(root):
-            if root is not None:
-                __in_order_height(root.left)
-                if root.other_values['height'] > 100:
-                    print(root.value, root.other_values['height'])
-                __in_order_height(root.right)
-
-        if self.root is not None:
-            __in_order_height(self.root)
-    
-    def in_order_weight(self):
-        def __in_order_weight(root):
-            if root is not None:
-                __in_order_weight(root.left)
-                if root.other_values['weight'] < 75:
-                    print(root.value, root.other_values['weight'])
-                __in_order_weight(root.right)
-
-        if self.root is not None:
-            __in_order_weight(self.root)
-
-    def ranking(self, ranking_result):
-        def __ranking(root, ranking_result):
-            if root is not None:
-                __ranking(root.left, ranking_result)
-                hero = root.other_values['derrotado_por']
-                if hero is not None:
-                    if hero not in ranking_result:
-                        ranking_result[hero] = 1
-                    else:
-                        ranking_result[hero] += 1
-                __ranking(root.right, ranking_result)
-
-        if self.root is not None:
-            __ranking(self.root, ranking_result)
-    
+   
     
     # MÉTODOS AÑADIDOS PARA EL EXAMEN DE POKÉMON
 
@@ -342,9 +265,86 @@ class BinaryTree:
         return __count(self.root) # Llama al ayudante recursivo
 
 arbol = BinaryTree()
-arbol_heroes = BinaryTree()
-arbol_villanos = BinaryTree()
 
+
+
+ # def villain_in_order(self):
+    #     def __villain_in_order(root):
+    #         if root is not None:
+    #             __villain_in_order(root.left)
+    #             if root.other_values["is_villain"] is True:
+    #                 print(root.value)
+    #             __villain_in_order(root.right)
+
+    #     if self.root is not None:
+    #         __villain_in_order(self.root)
+
+    # def count_heroes(self):
+    #     def __count_heroes(root):
+    #         count = 0
+    #         if root is not None:
+    #             if root.other_values["is_villain"] is False:
+    #                 count += 1
+    #             count += __count_heroes(root.left)
+    #             count += __count_heroes(root.right)
+
+    #         return count
+
+    #     total = 0
+    #     if self.root is not None:
+    #         total = __count_heroes(self.root)
+        
+    #     return total
+    
+    # def divide_tree(self, arbol_h, arbol_v):
+    #     def __divide_tree(root, arbol_h, arbol_v):
+    #         if root is not None:
+    #             if root.other_values["is_villain"] is False:
+    #                 arbol_h.insert(root.value, root.other_values)
+    #             else:
+    #                 arbol_v.insert(root.value, root.other_values)
+    #             __divide_tree(root.left, arbol_h, arbol_v)
+    #             __divide_tree(root.right, arbol_h, arbol_v)
+
+
+    #     __divide_tree(self.root, arbol_h, arbol_v)
+    
+    # def in_order_height(self):
+    #     def __in_order_height(root):
+    #         if root is not None:
+    #             __in_order_height(root.left)
+    #             if root.other_values['height'] > 100:
+    #                 print(root.value, root.other_values['height'])
+    #             __in_order_height(root.right)
+
+    #     if self.root is not None:
+    #         __in_order_height(self.root)
+    
+    # def in_order_weight(self):
+    #     def __in_order_weight(root):
+    #         if root is not None:
+    #             __in_order_weight(root.left)
+    #             if root.other_values['weight'] < 75:
+    #                 print(root.value, root.other_values['weight'])
+    #             __in_order_weight(root.right)
+
+    #     if self.root is not None:
+    #         __in_order_weight(self.root)
+
+    # def ranking(self, ranking_result):
+    #     def __ranking(root, ranking_result):
+    #         if root is not None:
+    #             __ranking(root.left, ranking_result)
+    #             hero = root.other_values['derrotado_por']
+    #             if hero is not None:
+    #                 if hero not in ranking_result:
+    #                     ranking_result[hero] = 1
+    #                 else:
+    #                     ranking_result[hero] += 1
+    #             __ranking(root.right, ranking_result)
+
+    #     if self.root is not None:
+    #         __ranking(self.root, ranking_result)
 
 
 # print()K
